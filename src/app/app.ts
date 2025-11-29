@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ export class App {
   protected loading = false;
   protected error = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   // Search by NFS-e
   protected searchByNfse(): void {
@@ -48,10 +48,12 @@ export class App {
         }
 
         this.loading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.loading = false;
         this.error = err.message || 'Error al buscar NFS-e';
+        this.cdr.detectChanges();
       }
     });
   }
@@ -82,10 +84,12 @@ export class App {
         }
 
         this.loading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.loading = false;
         this.error = err.message || 'Error al buscar número de crédito';
+        this.cdr.detectChanges();
       }
     });
   }
