@@ -32,7 +32,6 @@ export class App {
 
     this.loading = true;
     this.error = '';
-    this.notFoundMessage = '';
     this.results = [];
 
     this.http.get<any>(`http://localhost:8080/api/creditos/${this.searchValue}`).subscribe({
