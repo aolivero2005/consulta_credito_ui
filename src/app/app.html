@@ -56,7 +56,7 @@
       </tbody>
     </table>
   } @else if (!loading && searchValue) {
-    <div>No se encontraron resultados para la búsqueda.</div>
+    <div>{{ notFoundMessage || 'No se encontraron resultados para la búsqueda.' }}</div>
   }
 </div>
 

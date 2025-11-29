@@ -19,6 +19,7 @@ export class App {
   protected results: any[] = [];
   protected loading = false;
   protected error = '';
+  protected notFoundMessage = '';
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
@@ -31,6 +32,7 @@ export class App {
 
     this.loading = true;
     this.error = '';
+    this.notFoundMessage = '';
     this.results = [];
 
     this.http.get<any>(`http://localhost:8080/api/creditos/${this.searchValue}`).subscribe({
@@ -67,6 +69,7 @@ export class App {
 
     this.loading = true;
     this.error = '';
+    this.notFoundMessage = '';
     this.results = [];
 
     this.http.get<any>(`http://localhost:8080/api/creditos/credito/${this.searchValue}`).subscribe({
@@ -83,12 +86,20 @@ export class App {
           this.error = 'Formato de respuesta inesperado';
         }
 
+        this.notFoundMessage = '';
         this.loading = false;
         this.cdr.detectChanges();
       },
       error: (err) => {
         this.loading = false;
-        this.error = err.message || 'Error al buscar número de crédito';
+        if (err && err.status === 404) {
+          this.results = [];
+          this.error = '';
+          this.notFoundMessage = (err.error && err.error.message) ? err.error.message : 'No se encontraron resultados para la búsqueda.';
+        } else {
+          this.notFoundMessage = '';
+          this.error = err?.message || 'Error al buscar número de crédito';
+        }
         this.cdr.detectChanges();
       }
     });
