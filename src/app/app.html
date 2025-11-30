@@ -7,7 +7,7 @@
       <input
         type="text"
         [(ngModel)]="searchValue"
-        placeholder="Ingrese número de NFS-e o número de crédito"
+        placeholder="Insira o número NFS-e ou o número do cartão de crédito."
       />
       <button (click)="searchByNfse()">Buscar por NFS-e</button>
       <button (click)="searchByCredit()">Buscar por Número de Crédito</button>
@@ -28,13 +28,13 @@
         <tr>
           <th>Número de Crédito</th>
           <th>Número NFS-e</th>
-          <th>Fecha de Constitución</th>
+          <th>Data de Incorporação</th>
           <th>Valor ISSQN</th>
           <th>Tipo de Crédito</th>
           <th>Simples Nacional</th>
           <th>Alícuota</th>
           <th>Valor Facturado</th>
-          <th>Valor Deducción</th>
+          <th>Valor da Dedução</th>
           <th>Base de Cálculo</th>
         </tr>
       </thead>
@@ -56,7 +56,7 @@
       </tbody>
     </table>
   } @else if (!loading && searchValue) {
-    <div>{{ notFoundMessage || 'No se encontraron resultados para la búsqueda.' }}</div>
+    <div>{{ notFoundMessage || 'Nenhum resultado foi encontrado para a pesquisa..' }}</div>
   }
 </div>
 

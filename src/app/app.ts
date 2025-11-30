@@ -26,7 +26,7 @@ export class App {
   // Search by NFS-e
   protected searchByNfse(): void {
     if (!this.searchValue.trim()) {
-      this.error = 'Por favor, ingrese un número de NFS-e';
+      this.error = 'Por favor, insira um número NFS.e';
       return;
     }
 
@@ -45,7 +45,7 @@ export class App {
         } else {
           // Handle empty or invalid responses
           this.results = [];
-          this.error = 'Formato de respuesta inesperado';
+          this.error = 'Formato de resposta inesperado';
         }
 
         this.loading = false;
@@ -53,7 +53,7 @@ export class App {
       },
       error: (err) => {
         this.loading = false;
-        this.error = err.message || 'Error al buscar NFS-e';
+        this.error = err.message || 'Erro ao procurar NFS-e';
         this.cdr.detectChanges();
       }
     });
@@ -62,7 +62,7 @@ export class App {
   // Search by Credit Number
   protected searchByCredit(): void {
     if (!this.searchValue.trim()) {
-      this.error = 'Por favor, ingrese un número de crédito';
+      this.error = 'Por favor, insira um número de crédito.';
       return;
     }
 
@@ -82,7 +82,7 @@ export class App {
         } else {
           // Handle empty or invalid responses
           this.results = [];
-          this.error = 'Formato de respuesta inesperado';
+          this.error = 'Formato de resposta inesperado';
         }
 
         this.notFoundMessage = '';
@@ -94,10 +94,10 @@ export class App {
         if (err && err.status === 404) {
           this.results = [];
           this.error = '';
-          this.notFoundMessage = (err.error && err.error.message) ? err.error.message : 'No se encontraron resultados para la búsqueda.';
+          this.notFoundMessage = (err.error && err.error.message) ? err.error.message : 'Nenhum resultado foi encontrado para a pesquisa.';
         } else {
           this.notFoundMessage = '';
-          this.error = err?.message || 'Error al buscar número de crédito';
+          this.error = err?.message || 'Erro ao procurar o número do crédito';
         }
         this.cdr.detectChanges();
       }
