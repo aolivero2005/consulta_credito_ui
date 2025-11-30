@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: consulta_credito_ui
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - consulta_credito_network
+
+networks:
+  consulta_credito_network:
+    driver: bridge
