@@ -34,7 +34,7 @@ export class App {
     this.error = '';
     this.results = [];
 
-    this.http.get<any>(`http://localhost:8080/api/creditos/${this.searchValue}`).subscribe({
+    this.http.get<any>(`/api/creditos/${this.searchValue}`).subscribe({
       next: (data) => {
         // Handle both single object and array responses
         if (Array.isArray(data)) {
@@ -71,7 +71,7 @@ export class App {
     this.notFoundMessage = '';
     this.results = [];
 
-    this.http.get<any>(`http://localhost:8080/api/creditos/credito/${this.searchValue}`).subscribe({
+    this.http.get<any>(`/api/creditos/credito/${this.searchValue}`).subscribe({
       next: (data) => {
         // Handle both single object and array responses
         if (Array.isArray(data)) {
